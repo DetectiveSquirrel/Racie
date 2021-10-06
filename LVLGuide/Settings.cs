@@ -13,5 +13,7 @@ namespace LVLGuide
         public float PosX { get; set; } = 40;
         public float PosY { get; set; } = 40;
         public float Width { get; set; } = 350;
+
+        public float Height { get; set; } = 180;
     }
 }

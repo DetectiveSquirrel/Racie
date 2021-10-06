@@ -1,2 +1,5 @@
 packages/
 LVLGuide.sln.DotSettings.user
+Tests/bin/
+Tests/obj/
+LVLGuide/obj/
