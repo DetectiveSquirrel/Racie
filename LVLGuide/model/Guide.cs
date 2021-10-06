@@ -7,7 +7,7 @@ namespace LVLGuide.model
     public class Guide
     {
         private readonly IList<GuideStep> _steps;
-        private int _stepIdx;
+        private int _stepIdx = 0;
         private readonly int _stepsCount;
 
         public Guide(IList<GuideStep> steps, int startIdx = 0)

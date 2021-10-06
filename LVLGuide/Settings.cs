@@ -1,3 +1,5 @@
+
+using ExileCore.Shared.Attributes;
 using ExileCore.Shared.Interfaces;
 using ExileCore.Shared.Nodes;
 
@@ -9,6 +11,9 @@ namespace LVLGuide
         {
             Enable = new ToggleNode(false);
         }
+        
+        [Menu("Reload Hotkey")]
+        public ButtonNode ReloadButton { get; }= new();
         public ToggleNode Enable { get; set; }
         public float PosX { get; set; } = 40;
         public float PosY { get; set; } = 40;
