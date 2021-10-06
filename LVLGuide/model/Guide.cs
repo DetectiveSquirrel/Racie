@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ExileCore;
 
 namespace LVLGuide.model
@@ -69,7 +70,7 @@ namespace LVLGuide.model
 
         public float Progress()
         {
-            return (float) _stepIdx / _stepsCount;
+            return (float) _steps.Count(step => step.IsComplete) / _stepsCount;
         }
 
         public int Step()
