@@ -9,7 +9,6 @@ namespace LVLGuide.view
 {
     public class GuideWindow
     {
-        private bool _autoGoNext = true;
         public void Draw(Settings settings, Guide guide)
         {
             SetupStyle();
@@ -64,7 +63,6 @@ namespace LVLGuide.view
 
         private void DrawPrevButton(Guide guide)
         {
-            _autoGoNext = false;
             var disabled = !guide.HasPrev();
             if (disabled)
             {
@@ -73,6 +71,7 @@ namespace LVLGuide.view
 
             if (ImGui.ArrowButton("prev_step", ImGuiDir.Left))
             {
+                guide.AutoGoNext = false;
                 guide.Previous();
             }
 
@@ -91,13 +90,8 @@ namespace LVLGuide.view
                 if (ImGui.Checkbox(subStep.Text, ref stepIsComplete))
                 {
                     subStep.IsComplete = stepIsComplete;
-                    _autoGoNext = true;
+                    guide.AutoGoNext = true;
                 }
-            }
-
-            if (step.IsComplete && _autoGoNext)
-            {
-                guide.Next();
             }
         }
 

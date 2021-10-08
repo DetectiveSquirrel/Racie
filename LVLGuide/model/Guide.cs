@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using ExileCore;
 
 namespace LVLGuide.model
 {
@@ -9,11 +7,11 @@ namespace LVLGuide.model
         private readonly IList<GuideStep> _steps;
         private int _stepIdx = 0;
         private readonly int _stepsCount;
+        public bool AutoGoNext = true;
 
         public Guide(IList<GuideStep> steps, int startIdx = 0)
         {
             _steps = steps;
-            DebugWindow.LogMsg(steps.Count.ToString());
             _stepsCount = steps.Count;
             _stepIdx = startIdx;
         }
@@ -70,7 +68,7 @@ namespace LVLGuide.model
 
         public float Progress()
         {
-            return (float) _steps.Count(step => step.IsComplete) / _stepsCount;
+            return (float) _steps.Count / _stepsCount;
         }
 
         public int Step()

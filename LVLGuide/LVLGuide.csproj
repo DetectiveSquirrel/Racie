@@ -52,8 +52,14 @@
         <Compile Include="model\Guide.cs" />
         <Compile Include="model\GuideParser.cs" />
         <Compile Include="model\GuideStep.cs" />
-        <Compile Include="model\GuideSubStep.cs" />
+        <Compile Include="model\IGuideSubStep.cs" />
         <Compile Include="Controller.cs" />
+        <Compile Include="model\SubSteps\DefaultSubStep.cs" />
+        <Compile Include="model\SubSteps\GSubStep.cs" />
+        <Compile Include="model\SubSteps\PSubStep.cs" />
+        <Compile Include="model\SubSteps\QsSubStep.cs" />
+        <Compile Include="model\SubSteps\WPSubStep.cs" />
+        <Compile Include="model\SubSteps\XPSubStep.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Settings.cs" />
         <Compile Include="view\GuideWindow.cs" />

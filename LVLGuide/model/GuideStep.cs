@@ -1,18 +1,27 @@
 using System.Collections.Generic;
 using System.Linq;
+using ExileCore;
 
 namespace LVLGuide.model
 {
     public class GuideStep
     {
-        public readonly IList<GuideSubStep> SubSteps;
+        public readonly IList<IGuideSubStep> SubSteps;
 
         public bool IsComplete
         {
             get { return SubSteps.All(step => step.IsComplete); }
         }
 
-        public GuideStep(IList<GuideSubStep> subSteps)
+        public void Update(GameController gameController)
+        {
+            foreach (var guideSubStep in SubSteps)
+            {
+                guideSubStep.Update(gameController);
+            }
+        }
+
+        public GuideStep(IList<IGuideSubStep> subSteps)
         {
             SubSteps = subSteps;
         }

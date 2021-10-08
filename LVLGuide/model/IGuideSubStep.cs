@@ -1,13 +1,11 @@
+using ExileCore;
+
 namespace LVLGuide.model
 {
-    public class GuideSubStep
+    public interface IGuideSubStep
     {
         public bool IsComplete { get; set; }
         public string Text { get; }
-
-        public GuideSubStep(string text)
-        {
-            Text = text;
-        }
+        public void Update(GameController gameController);
     }
 }
