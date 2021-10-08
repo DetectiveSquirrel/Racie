@@ -12,7 +12,7 @@ namespace LVLGuide
             Enable = new ToggleNode(false);
         }
         
-        [Menu("Reload Hotkey")]
+        [Menu("Reload Button")]
         public ButtonNode ReloadButton { get; }= new();
         public ToggleNode Enable { get; set; }
         public float PosX { get; set; } = 40;

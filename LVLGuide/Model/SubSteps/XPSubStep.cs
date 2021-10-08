@@ -21,7 +21,6 @@ namespace LVLGuide.model.SubSteps
             {
                 IsComplete = gameController.Game.IngameState.ServerData.PlayerInformation.Level >= _lvlWanted;
             }
-            DebugWindow.LogMsg($"Is complete: {IsComplete}");
         }
     }
 }
