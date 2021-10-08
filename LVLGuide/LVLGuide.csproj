@@ -49,20 +49,20 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="model\Guide.cs" />
-        <Compile Include="model\GuideParser.cs" />
-        <Compile Include="model\GuideStep.cs" />
-        <Compile Include="model\IGuideSubStep.cs" />
+        <Compile Include="Model\Guide.cs" />
+        <Compile Include="Model\GuideParser.cs" />
+        <Compile Include="Model\GuideStep.cs" />
+        <Compile Include="Model\IGuideSubStep.cs" />
         <Compile Include="Controller.cs" />
-        <Compile Include="model\SubSteps\DefaultSubStep.cs" />
-        <Compile Include="model\SubSteps\GSubStep.cs" />
-        <Compile Include="model\SubSteps\PSubStep.cs" />
-        <Compile Include="model\SubSteps\QsSubStep.cs" />
-        <Compile Include="model\SubSteps\WPSubStep.cs" />
-        <Compile Include="model\SubSteps\XPSubStep.cs" />
+        <Compile Include="Model\SubSteps\DefaultSubStep.cs" />
+        <Compile Include="Model\SubSteps\GSubStep.cs" />
+        <Compile Include="Model\SubSteps\PSubStep.cs" />
+        <Compile Include="Model\SubSteps\QsSubStep.cs" />
+        <Compile Include="Model\SubSteps\WPSubStep.cs" />
+        <Compile Include="Model\SubSteps\XPSubStep.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Settings.cs" />
-        <Compile Include="view\GuideWindow.cs" />
+        <Compile Include="View\GuideWindow.cs" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="InputSimulator">
