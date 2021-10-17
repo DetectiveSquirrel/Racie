@@ -1,6 +1,10 @@
+using System;
+using System.Runtime.InteropServices;
 using ExileCore;
 using ImGuiNET;
 using LVLGuide.model;
+using LVLGuide.ViewModel;
+using LVLGuide.ViewModelProcessor;
 using SharpDX;
 using Vector2 = System.Numerics.Vector2;
 using Vector4 = System.Numerics.Vector4;
@@ -11,6 +15,7 @@ namespace LVLGuide.view
     {
         public void Draw(Settings settings, Guide guide)
         {
+            var oldStyle = SaveStyle();
             SetupStyle();
             var rect = CreateWindowRect(settings);
             var flags = SetupWindowFlags(rect);
@@ -18,81 +23,13 @@ namespace LVLGuide.view
 
             if (ImGui.Begin($"LVLGuide", ref opened, flags))
             {
-                DrawStepNavigator(guide);
-                ImGui.Spacing();
-                ImGui.BeginGroup();
-                ImGui.Indent(3.0f);
-                DrawGuideStep(guide);
-                ImGui.Unindent();
-                ImGui.EndGroup();
-                ImGui.Spacing();
-                ImGui.ProgressBar(guide.Progress());
+                var model = new GuideViewModel(guide);
+                MenuParser.Parse(model).Draw();
                 UpdateSizeSettings(settings);
             }
 
+            LoadStyle(oldStyle);
             ImGui.End();
-        }
-
-        private void DrawStepNavigator(Guide guide)
-        {
-            DrawPrevButton(guide);
-            ImGui.SameLine();
-            ImGui.Text($"Step {guide.Step()} of {guide.Steps()}");
-            ImGui.SameLine();
-            DrawNextButton(guide);
-        }
-
-        private void DrawNextButton(Guide guide)
-        {
-            var disabled = !guide.HasNext();
-            if (disabled)
-            {
-                ImGui.PushStyleVar(ImGuiStyleVar.Alpha, 0.0f);
-            }
-
-            if (ImGui.ArrowButton("next_step", ImGuiDir.Right))
-            {
-                guide.Next();
-            }
-
-            if (disabled)
-            {
-                ImGui.PopStyleVar();
-            }
-        }
-
-        private void DrawPrevButton(Guide guide)
-        {
-            var disabled = !guide.HasPrev();
-            if (disabled)
-            {
-                ImGui.PushStyleVar(ImGuiStyleVar.Alpha, 0.0f);
-            }
-
-            if (ImGui.ArrowButton("prev_step", ImGuiDir.Left))
-            {
-                guide.AutoGoNext = false;
-                guide.Previous();
-            }
-
-            if (disabled)
-            {
-                ImGui.PopStyleVar();
-            }
-        }
-
-        private void DrawGuideStep(Guide guide)
-        {
-            var step = guide.GetCurrentStep();
-            foreach (var subStep in step.SubSteps)
-            {
-                var stepIsComplete = subStep.IsComplete;
-                if (ImGui.Checkbox(subStep.Text, ref stepIsComplete))
-                {
-                    subStep.IsComplete = stepIsComplete;
-                    guide.AutoGoNext = true;
-                }
-            }
         }
 
         private static void UpdateSizeSettings(Settings settings)
@@ -126,6 +63,18 @@ namespace LVLGuide.view
             if (!rect.Contains(Input.MousePosition))
                 flags ^= ImGuiWindowFlags.NoMove;
             return flags;
+        }
+
+        private static unsafe void LoadStyle(ImGuiStyle style)
+        {
+            var stylePtr = ImGui.GetStyle();
+            Marshal.StructureToPtr(style, new IntPtr(stylePtr.NativePtr), false);
+        }
+
+        private static unsafe ImGuiStyle SaveStyle()
+        {
+            var style = ImGui.GetStyle();
+            return Marshal.PtrToStructure<ImGuiStyle>(new IntPtr(style.NativePtr));
         }
 
         private void SetupStyle()
