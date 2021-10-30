@@ -3,3 +3,5 @@ LVLGuide.sln.DotSettings.user
 Tests/bin/
 Tests/obj/
 LVLGuide/obj/
+.vs/
+LVLGuide/bin/
