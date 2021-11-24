@@ -22,9 +22,9 @@ Kill Hailrake [QS a1q5 2]
 ```
 **Opperation**|**Example**|**Description**
 :-----:|:-----:|:-----:
-WP|[P The Coast]|"Take Waypoint" Triggers the Opperation once Local Player's area is the same "The Coast"
+WP|[WP The Coast]|"Take Waypoint" Triggers the Opperation once Local Player's area is the same "The Coast"
 G|[G The Mud Flats]|"Go To" Triggers the Opperation once Local Player's area is the same "The Mud Flats"
 QS|[QS a1q1 3]|"Queast State" Triggers once the quest "a1q1" state is equal or higher than the wanted stage "3" [0-1-2-3-4] - State ID's of "a1q1"
 QT|[QT a1q1]|"Quest Trigger" state 0 = complete (state id's are in reverse order) once "a1q1" state is completes stateid = 0 and opperation triggers
-WP|[WP The Submerged Passage]|Triggers when player has the waypoint for area "The Submerged Passage"
+P|[P The Submerged Passage]|Triggers when player has the waypoint for area "The Submerged Passage"
 XP|[XP 4]| Triggers once player level is equal or above "4"
